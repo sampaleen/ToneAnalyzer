@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import * as request from 'request';
+import {ToneAnalyzerV3} from 'watson-developer-cloud/tone-analyzer/v3';
+import {database} from '@firebase/database';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -8,44 +10,41 @@ import * as request from 'request';
 })
 export class AppComponent {
 
-  getText(text:string) {
-    console.log(text);
-    // api call starts here
-    this.makeRequest("");
-    return false;
-  }
-
-
-  makeRequest(text:string) {
-
-    let creds = {
-        "url": "https://gateway.watsonplatform.net/tone-analyzer/api",
-        "username": "1115bafc-e711-4e1d-8603-1f69d3abfcf7",
-        "password": "NPmWUXbkXcyg"
-      }
-
-    //var request = require('request');
-    var headers = {
-        'Content-Type': 'application/json'
+  firebaseConfig = {
+      apiKey: "AIzaSyCOoDPAch2LpL-drAam3c4RcHdSDmNBNQk",
+      authDomain: "toneanalyzer-ad40d.firebaseapp.com",
+      databaseURL: "https://toneanalyzer-ad40d.firebaseio.com",
+      projectId: "toneanalyzer-ad40d",
+      storageBucket: "toneanalyzer-ad40d.appspot.com",
+      messagingSenderId: "277910134969"
     };
-    var dataString = JSON.stringify({"text" : "Team, I know that times are tough! Product sales have been disappointing for the past three quarters. We have a competitive product, but we need to do a better job of selling it!"});
-    var options = {
-        url: creds.url,
-        method: 'POST',
-        headers: headers,
-        body: dataString,
-        auth: {
-            'user': creds.username,
-            'pass': creds.password
-        }
-    };
-    function callback(error, response, body) {
-        if (!error && response.statusCode == 200) {
-            console.log(body);
-        }
+
+    key:string;
+    listener;
+
+    constructor() {
+      firebase.initializeApp(this.firebaseConfig);
     }
-    request(options, callback);
 
+  getText(text:string) {
+    document.getElementById("spinner").style.visibility = "visible";
+    console.log(text);
+    let database = firebase.database();
+    //send to database to activate trigger
+    this.key = database.ref("Messages/").push().key;
+    database.ref("Messages/").child(this.key).set({
+      "text": text
+    });
+
+    this.listener = database.ref("Messages/").child(this.key).child("/Response/").on('value', function(snap){
+      if(snap.val()){
+        console.log("Response: " , snap.val());
+        document.getElementById("spinner").style.visibility = "hidden";
+        document.getElementById("json").innerHTML = JSON.stringify(snap.val(), undefined, 2);
+      }
+    });
+
+    return false;
   }
 
 }

@@ -7,6 +7,9 @@ import { TextfieldComponent } from './textfield/textfield.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material';
 import {MatCardModule} from '@angular/material';
+import {MatButtonModule} from '@angular/material';
+import {MatProgressSpinnerModule} from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +21,9 @@ import {MatCardModule} from '@angular/material';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

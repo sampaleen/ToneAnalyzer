@@ -1,26 +1,29 @@
-<<<<<<< HEAD
-<h1>Tone Analyzer</h1>
-=======
-<!--The whole content below can be removed with the new code.-->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12"><h1>Tone Analyzer</h1></div>
+  </div>
+</div>
+
 <div style="text-align:center">
     <mat-card class="card">
       <h1>Enter some Text : </h1>
-      <form class="example-form">
+      <form class="example-form" (submit)="getText(text.value)">
         <mat-form-field class="example-full-width">
-          <textarea matInput></textarea>
+          <textarea matInput #text></textarea>
         </mat-form-field>
+        <button mat-raised-button color="primary">Submit</button>
       </form>
     </mat-card>
 </div>
 
->>>>>>> 76029b91a7fc2d4259f8524cde1d5544204ba717
-
-<div class="container">
-  <form (submit)="getText(text.value)">
-    <div class="form-group">
-      <label>Input text to be analyze below</label>
-      <textarea class="form-control" rows="7" #text></textarea>
+<div class="container-fluid">
+  <div class="row">
+    <pre id="json"></pre>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-5">
+      <mat-spinner id="spinner" style="visibility: hidden;"></mat-spinner>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
+  </div>
 </div>
