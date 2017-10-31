@@ -1,9 +1,11 @@
 .card{
-  width:50%;
-  height: 50%;
-  margin: 200px;
+  margin: 50px;
 }
 
 .container{
   text-align: center;
+}
+
+.example-fill-remaining-space {
+  flex: 1 1 auto;
 }

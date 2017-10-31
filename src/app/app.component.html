@@ -1,14 +1,19 @@
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-12"><h1>Tone Analyzer</h1></div>
-  </div>
-</div>
+<mat-toolbar color = "primary">Tone Analyzer  
+  <span class="example-fill-remaining-space"></span>
+  <span><i class = "em em-bread"></i></span>
+  <span><i class = "em em-icecream"></i></span>
+  <span><i class = "em em-package"></i></span>
+</mat-toolbar>
 
 <div style="text-align:center">
     <mat-card class="card">
+<<<<<<< Updated upstream
       <h1>Enter some Text : </h1>
       <form class="example-form">
+=======
+      <h1>Enter Some Text : </h1>
+      <form class="example-form" (submit)="getText(text.value)">
+>>>>>>> Stashed changes
         <mat-form-field class="example-full-width">
           <textarea matInput #text></textarea>
         </mat-form-field>
@@ -19,7 +24,12 @@
 
 <div class="container-fluid">
   <div class="row">
-    <pre id="json"></pre>
+      <span id = "anger" style="visibility: hidden;"><i class = "em em-angry" style="height:200px; width:200px;"></i></span>
+      <span id = "disgust" style="visibility: hidden;"><i class = "em em-mask" style="height:200px; width:200px;"></i></span>
+      <span id = "fear" style="visibility: hidden;"><i class = "em em-fearful" style="height:200px; width:200px;"></i></span>
+      <span id = "joy" style="visibility: hidden;"><i class = "em em-joy" style="height:200px; width:200px;"></i></span>
+      <span id = "sadness" style="visibility: hidden;"><i class = "em em-cry" style="height:200px; width:200px;"></i></span>
+      <pre id="json"></pre>
   </div>
   <div class="row">
     <div class="col-md-6 col-md-offset-5">
@@ -27,3 +37,5 @@
     </div>
   </div>
 </div>
+
+<router-outlet></router-outlet>
