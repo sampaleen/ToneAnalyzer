@@ -3,6 +3,9 @@ const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
 exports.analyzeText = functions.database.ref('Messages/{key}/text').onWrite(event=>{
+  if(!event.data.val()){
+    return null;
+  }
   const key = event.params.key;
   const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
@@ -29,7 +32,9 @@ exports.analyzeText = functions.database.ref('Messages/{key}/text').onWrite(even
       return null;
     }else {
       console.log(JSON.stringify(response, null, 2));
-      return admin.database().ref("Messages/").child(key).child("Response").set(response);
+      return admin.database().ref("Messages/").child(key).child("Response").set(response).then(function() {
+        return admin.database().ref("Messages/").child(key).remove();
+      });
     }
   });
 
