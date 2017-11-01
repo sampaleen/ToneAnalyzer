@@ -11,16 +11,21 @@ import {MatProgressSpinnerModule} from '@angular/material';
 import {DataService} from './services/data.service';
 import {MatToolbarModule} from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
-import { RawDataComponent } from './raw-data/raw-data.component'
+import { RawDataComponent } from './raw-data/raw-data.component';
+import { ToneComponent } from './tone/tone.component'
 
 const appRoutes: Routes = [
+  {path:'home', component: ToneComponent},
   { path: 'raw-data', component: RawDataComponent },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', component:ToneComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     RawDataComponent,
+    ToneComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,8 +37,7 @@ const appRoutes: Routes = [
     MatProgressSpinnerModule,
     MatToolbarModule,
     RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      appRoutes
     )
   ],
   providers: [DataService],

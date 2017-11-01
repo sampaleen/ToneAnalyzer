@@ -1,0 +1,29 @@
+
+
+<div style="text-align:center">
+  <mat-card class="card">
+    <h1>Enter Some Text : </h1>
+    <form class="example-form" (submit)="getText(text.value)">
+      <mat-form-field class="example-full-width">
+        <textarea matInput #text></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="button" (click)="getText(text.value)">Submit</button>
+    </form>
+  </mat-card>
+</div>
+
+<div class="container-fluid">
+<div class="row">
+    <span id = "anger" style="display:none;"><i class = "em em-angry" style="height:200px; width:200px;"></i></span>
+    <span id = "disgust" style="display:none;"><i class = "em em-mask" style="height:200px; width:200px;"></i></span>
+    <span id = "fear" style="display:none;"><i class = "em em-fearful" style="height:200px; width:200px;"></i></span>
+    <span id = "joy" style="display:none;"><i class = "em em-joy" style="height:200px; width:200px;"></i></span>
+    <span id = "sadness" style="display:none;"><i class = "em em-cry" style="height:200px; width:200px;"></i></span>
+    <pre id="json"></pre>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-5">
+    <mat-spinner id="spinner" style="visibility: hidden;"></mat-spinner>
+  </div>
+</div>
+</div>

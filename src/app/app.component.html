@@ -1,36 +1,11 @@
-<mat-toolbar color = "primary">Tone Analyzer  
+<mat-toolbar color = "primary">
+  <button mat-raised-button color = "warn" routerLink = "/home">Tone Analyzer</button>
+  <span class="example-fill-remaining-space"></span>
+  <button  mat-raised-button color = "warn" routerLink = "/raw-data">Raw Data</button>
   <span class="example-fill-remaining-space"></span>
   <span><i class = "em em-bread"></i></span>
   <span><i class = "em em-icecream"></i></span>
   <span><i class = "em em-package"></i></span>
 </mat-toolbar>
-
-<div style="text-align:center">
-    <mat-card class="card">
-      <h1>Enter Some Text : </h1>
-      <form class="example-form" (submit)="getText(text.value)">
-        <mat-form-field class="example-full-width">
-          <textarea matInput #text></textarea>
-        </mat-form-field>
-        <button mat-raised-button color="primary" type="button" (click)="getText(text.value)">Submit</button>
-      </form>
-    </mat-card>
-</div>
-
-<div class="container-fluid">
-  <div class="row">
-      <span id = "anger" style="visibility: hidden;"><i class = "em em-angry" style="height:200px; width:200px;"></i></span>
-      <span id = "disgust" style="visibility: hidden;"><i class = "em em-mask" style="height:200px; width:200px;"></i></span>
-      <span id = "fear" style="visibility: hidden;"><i class = "em em-fearful" style="height:200px; width:200px;"></i></span>
-      <span id = "joy" style="visibility: hidden;"><i class = "em em-joy" style="height:200px; width:200px;"></i></span>
-      <span id = "sadness" style="visibility: hidden;"><i class = "em em-cry" style="height:200px; width:200px;"></i></span>
-      <pre id="json"></pre>
-  </div>
-  <div class="row">
-    <div class="col-md-6 col-md-offset-5">
-      <mat-spinner id="spinner" style="visibility: hidden;"></mat-spinner>
-    </div>
-  </div>
-</div>
 
 <router-outlet></router-outlet>
