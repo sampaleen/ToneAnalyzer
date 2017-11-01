@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../services/data.service';
 
 
 @Component({
@@ -7,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./raw-data.component.css']
 })
 export class RawDataComponent implements OnInit {
+  data = "Please go back to tone analyzer and enter text.";
+  constructor(private dataService:DataService) {
 
-  constructor() { }
+  }
 
   ngOnInit() {
+    this.dataService.currentMessage.subscribe(message => this.data = message);
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ToneAnalyzerV3} from 'watson-developer-cloud/tone-analyzer/v3';
-// import * as firebase from 'firebase';
+import * as firebase from 'firebase';
 import {DataService} from '../services/data.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class ToneComponent implements OnInit {
 
   // variables
   key:string;
+  listener:any;
   // constructor taking in a service, our api
   constructor(private dataService:DataService) {
     console.log("init app.component...");
@@ -27,9 +28,14 @@ export class ToneComponent implements OnInit {
   getText(text:string) {
     document.getElementById("spinner").style.visibility = "visible";
     console.log(text);
+    this.dataService.changeMessage("button works");
     this.dataService.postMessage(text);
     this.key = this.dataService.getKey();
     this.dataService.assignListener(this.key);
     return false;
+  }
+
+  sendMessage(text) {
+    this.dataService.changeMessage(text);
   }
 }
